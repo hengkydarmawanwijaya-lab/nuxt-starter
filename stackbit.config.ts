@@ -1,7 +1,7 @@
-import { defineStackbitConfig } from "@stackbit/types";
+
+import { defineStackbitConfig, SiteMapEntry } from "@stackbit/types";
 import { GitContentSource } from "@stackbit/cms-git";
 
-export default defineStackbitConfig({
   contentSources: [
     new GitContentSource({
       rootPath: __dirname,
@@ -36,5 +36,17 @@ export default defineStackbitConfig({
         }
       ],
     })
-  ]
+  ],
+  siteMap: ({ documents, models }) => {
+    // Filter semua model bertipe page
+    const pageModels = models.filter((m) => m.type === "page");
+    return documents
+      .filter((d) => pageModels.some((m) => m.name === d.modelName))
+      .map((document) => ({
+        stableId: document.id,
+        urlPath: `/${document.slug || document.id}`,
+        document,
+        isHomePage: document.slug === "index"
+      })) as SiteMapEntry[];
+  }
 });
