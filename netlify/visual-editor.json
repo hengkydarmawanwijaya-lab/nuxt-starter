@@ -1,0 +1,25 @@
+{
+  "collections": [
+    {
+      "name": "pages",
+      "label": "Pages",
+      "folder": "pages",
+      "extension": "vue",
+      "create": true,
+      "fields": [
+        { "name": "title", "label": "Title", "widget": "string" },
+        { "name": "body", "label": "Body", "widget": "markdown" }
+      ]
+    },
+    {
+      "name": "data",
+      "label": "Data",
+      "folder": "data",
+      "extension": "json",
+      "create": true,
+      "fields": [
+        { "name": "content", "label": "Content", "widget": "text" }
+      ]
+    }
+  ]
+}
